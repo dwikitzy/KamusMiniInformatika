@@ -1,10 +1,21 @@
 <?php
-$koneksi = new mysqli("localhost", "root", "", "db_kamus");
+// --- BAGIAN KONEKSI DATABASE (DIUPDATE UNTUK RAILWAY) ---
+
+// Mengambil variabel dari Environment Railway. 
+// Tanda '??' berarti: Jika di Railway tidak ketemu, pakai settingan Localhost (sebelah kanan).
+$host = $_ENV["MYSQLHOST"] ?? 'localhost';
+$user = $_ENV["MYSQLUSER"] ?? 'root';
+$pass = $_ENV["MYSQLPASSWORD"] ?? '';
+$db   = $_ENV["MYSQLDATABASE"] ?? 'db_kamus'; // Pastikan nama DB lokalmu 'db_kamus'
+$port = $_ENV["MYSQLPORT"] ?? 3306;
+
+$koneksi = new mysqli($host, $user, $pass, $db, $port);
 
 // Cek koneksi
 if ($koneksi->connect_error) {
     die("Koneksi gagal: " . $koneksi->connect_error);
 }
+// --------------------------------------------------------
 
 // Create
 if (!function_exists("tambah")) {
