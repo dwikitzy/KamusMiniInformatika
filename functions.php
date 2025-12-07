@@ -1,13 +1,12 @@
 <?php
-// --- BAGIAN KONEKSI DATABASE (DIUPDATE UNTUK RAILWAY) ---
+// --- UPDATE KONEKSI DATABASE (VERSI GETENV - LEBIH KUAT) ---
 
-// Mengambil variabel dari Environment Railway. 
-// Tanda '??' berarti: Jika di Railway tidak ketemu, pakai settingan Localhost (sebelah kanan).
-$host = $_ENV["MYSQLHOST"] ?? 'localhost';
-$user = $_ENV["MYSQLUSER"] ?? 'root';
-$pass = $_ENV["MYSQLPASSWORD"] ?? '';
-$db   = $_ENV["MYSQLDATABASE"] ?? 'db_kamus'; // Pastikan nama DB lokalmu 'db_kamus'
-$port = $_ENV["MYSQLPORT"] ?? 3306;
+// Gunakan getenv() karena $_ENV seringkali dinonaktifkan di server cloud.
+$host = getenv("MYSQLHOST") ?: 'localhost';
+$user = getenv("MYSQLUSER") ?: 'root';
+$pass = getenv("MYSQLPASSWORD") ?: '';
+$db   = getenv("MYSQLDATABASE") ?: 'db_kamus';
+$port = getenv("MYSQLPORT") ?: 3306;
 
 $koneksi = new mysqli($host, $user, $pass, $db, $port);
 
@@ -15,6 +14,7 @@ $koneksi = new mysqli($host, $user, $pass, $db, $port);
 if ($koneksi->connect_error) {
     die("Koneksi gagal: " . $koneksi->connect_error);
 }
+// --------------------------------------------------------
 // --------------------------------------------------------
 
 // Create
