@@ -1,0 +1,432 @@
+/* Reset Dasar & Font */
+:root {
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --white: #ffffff;
+    --border-radius: 8px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* === CENTERING === */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    
+    /* Magic untuk centering */
+    display: flex;
+    align-items: center;       /* Center Vertikal */
+    justify-content: center;  /* Center Horizontal */
+    min-height: 100vh;         /* Pastikan setidaknya setinggi layar */
+    padding: 2rem 0;           /* Beri jarak jika konten lebih tinggi dari layar */
+}
+
+/* Container Utama */
+.container {
+    max-width: 1000px;
+    width: 90%; 
+    margin: 0; 
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+/* === HEADER === */
+header {
+    text-align: center; 
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* === TOMBOL & SEARCH === */
+.controls-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    gap: 1.5rem; 
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; 
+}
+
+#btn-tambah {
+    flex-shrink: 0; 
+}
+
+#search-form {
+    flex-grow: 1; 
+    min-width: 250px; 
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+}
+
+/* Tombol */
+.btn {
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    color: var(--white);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-edit {
+    background-color: var(--warning-color);
+    color: #333;
+    font-size: 0.9em;
+    padding: 0.4rem 0.8rem;
+}
+.btn-edit:hover {
+    background-color: #e0a800;
+}
+
+.btn-hapus {
+    background-color: var(--danger-color);
+    font-size: 0.9em;
+    padding: 0.4rem 0.8rem;
+}
+.btn-hapus:hover {
+    background-color: #c82333;
+}
+/* ... (kode untuk .btn-primary, .btn-edit, .btn-hapus) ... */
+
+.btn-hapus:hover {
+    background-color: #c82333;
+}
+
+/* TAMBAHKAN BLOK INI:
+  Ini akan memberi warna pada tombol "Ya, Hapus" di modal
+*/
+.btn-danger {
+    background-color: var(--danger-color);
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* === TABLE SCROLL === */
+/* ... (sisa kode CSS-mu) ... */
+/* === TABLE SCROLL === */
+.table-wrapper {
+    max-height: 450px; 
+    overflow-y: auto;  
+    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); 
+}
+
+.kamus-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.kamus-table thead tr {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: left;
+}
+
+.kamus-table thead th {
+    padding: 0.9rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--primary-color);
+}
+
+.kamus-table td {
+     padding: 0.9rem 1rem;
+}
+
+.kamus-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    background-color: var(--white);
+}
+
+.kamus-table tbody tr:nth-of-type(even) {
+    background-color: var(--light-color);
+}
+
+.kamus-table tbody tr:last-of-type {
+    border-bottom: 0; 
+}
+
+.kamus-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.kamus-table td[data-label="Aksi"] {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* === MODAL (REVISI LOGIKA) === */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    backdrop-filter: blur(3px);
+    opacity: 0; /* Default: Sembunyi */
+    pointer-events: none; /* Default: Tidak bisa diklik */
+    transition: opacity 0.3s ease;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95); 
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    z-index: 101;
+    width: 90%;
+    max-width: 500px;
+    opacity: 0; /* Default: Sembunyi */
+    pointer-events: none; /* Default: Tidak bisa diklik */
+    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
+}
+
+/* REVISI: 
+   Gunakan kelas .is-visible untuk memunculkan modal
+*/
+.modal-backdrop.is-visible,
+.modal-container.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container.is-visible {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* HAPUS: Kelas .hidden tidak dipakai lagi untuk modal */
+/*
+.hidden {
+    display: none; 
+}
+*/
+
+/* Styling di dalam modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.modal-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.5rem;
+}
+.modal-close-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.modal-close-btn:hover {
+    color: var(--danger-color);
+}
+.modal-body .form-group {
+    margin-bottom: 1rem;
+}
+.modal-body .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+.modal-body .form-group input,
+.modal-body .form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+.modal-body .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+.modal-footer {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+}
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+/* --- Responsif --- */
+@media (max-width: 768px) {
+    /* Trik "Card" untuk Tabel di HP */
+    .kamus-table {
+        border: 0;
+    }
+
+    .kamus-table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .kamus-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        background: var(--white);
+        overflow: hidden;
+    }
+
+    .kamus-table td {
+        display: block;
+        text-align: right; 
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .kamus-table td::before {
+        content: attr(data-label);
+        float: left; 
+        font-weight: 600;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        font-size: 0.9em;
+    }
+
+    .kamus-table td:last-child {
+        border-bottom: 0;
+    }
+    
+    .kamus-table td[data-label="Aksi"] {
+        justify-content: flex-end; 
+    }
+    
+    .table-wrapper {
+        border: none;
+        box-shadow: none;
+        max-height: none; 
+        overflow-y: visible; 
+    }
+
+    body {
+        display: block;
+        min-height: auto;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls-container {
+        flex-direction: column; 
+        align-items: stretch;   
+        gap: 1rem; 
+    }
+    
+    #btn-tambah {
+        text-align: center; 
+        order: -1; 
+    }
+}
+
+/* === TOAST NOTIFICATION === */
+.toast {
+    position: fixed;
+    bottom: -100px; /* Mulai dari luar layar */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--dark-color);
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 200;
+    transition: all 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    font-weight: 600;
+}
+
+.toast.show {
+    bottom: 30px; /* Muncul ke atas */
+}
+
+.toast.success {
+    background-color: #28a745; /* Hijau */
+}
+
+.toast.error {
+    background-color: var(--danger-color); /* Merah */
+}
